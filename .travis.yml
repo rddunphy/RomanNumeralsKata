@@ -16,3 +16,9 @@ branches:
 
 before_install:
   - chmod +x gradlew
+
+after_install:
+    ./gradlew sonarqube \
+       -Dsonar.host.url=https://sonarcloud.io \
+       -Dsonar.organization=rddunphy-github \
+       -Dsonar.login=dde7ec0ce44964335d19eb4cbb66ae49e112bf45

@@ -2,6 +2,10 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
+plugins {
+    id "org.sonarqube" version "2.2"
+} 
+
 repositories {
     jcenter()
 }
