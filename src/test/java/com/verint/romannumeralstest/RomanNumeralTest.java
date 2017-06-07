@@ -1,4 +1,5 @@
 package com.verint.romannumeralstest;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -30,7 +31,7 @@ public class RomanNumeralTest {
 
     @Test
     public void shouldConvertArabicHundredToRomanC() {
-        assertThat(RomanNumeralConverter.convertToRoman(100), is("C"));
+        assertThat(RomanNumeralConverter.convertToRoman(130), is("C"));
     }
 
     @Test
