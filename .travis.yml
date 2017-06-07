@@ -3,6 +3,9 @@ language: java
 jdk:
   - oraclejdk8
 
+sudo: false
+install: true
+
 notifications:
   email:
     recipients:
@@ -17,8 +20,18 @@ branches:
 before_install:
   - chmod +x gradlew
 
-after_install:
-    ./gradlew sonarqube \
-       -Dsonar.host.url=https://sonarcloud.io \
-       -Dsonar.organization=rddunphy-github \
-       -Dsonar.login=dde7ec0ce44964335d19eb4cbb66ae49e112bf45
+script:
+  - ./gradlew sonarqube
+
+addons:
+  sonarqube:
+    organization: "rddunphy-github"
+    token:
+      secure: "zqWk77Zw2PLbyyfc3BgPvZTdAeCSv3N1HwqPY404BK655AJMAlpEADQ28VclQcQfvbnSwlsa/Xx8/wPlo6UN6xDOHAmhsbVoKP66cHZWB2nJIs/tDB05aA3ty49pRLeSXtWJ3NpHR1XIInnZfvFqmgL25I1LP0WmCsfDV1vThLDNUflX2VDpeWJc9AwWwf3FmKiRe07AOOGd+YypoL60mIOeBVoNY9USQKPaBNj39T+BNj+8Im9SlaGe/F2oe+ThXWnT6NF/tbQezaQn2Pncz/9FGTM3VPRJ4Fh8YAQkJCwavRf0AlR5YkPNtKWcv4pX6B9+8UTt9Xla24r+MT0dLCZqDK3PeXxRGGYi7teBVZK1jTGQqcYx0Akf+wq6y+JwCYpKq6L6XA8ecYp0EycjOHD640bsk21JvZgyEh24aTwsSnRkXhmOW3e+8BYFXsb50uq9RZSQf3fKGyeRhtiFvmjeOEyLeKnul7I4NmiFHf91QrW5bx9XYgKIQzYFrmeg6RW2DdtbcsnxzUajdpqtuOFmqmeQP+Y/AgQ8ytuMQLCRJqYkZH9hSOvDvrFdOmEiaFrdRZb+3q+ynTX409w/S8fuXhGagWRZVeIK5+7T//VsQKWpM1fJKbmzNLrGOQRUpFpTxmoOiF4ebT8Z/XqilOlL+IFRqIyEk9CNmhd90kU="
+
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+    - '$HOME/.gradle'
+    - '.gradle'
