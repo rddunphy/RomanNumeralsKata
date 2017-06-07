@@ -31,7 +31,7 @@ public class RomanNumeralTest {
 
     @Test
     public void shouldConvertArabicHundredToRomanC() {
-        assertThat(RomanNumeralConverter.convertToRoman(130), is("C"));
+        assertThat(RomanNumeralConverter.convertToRoman(100), is("C"));
     }
 
     @Test
