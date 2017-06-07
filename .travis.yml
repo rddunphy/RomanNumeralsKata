@@ -1,37 +1,31 @@
 language: java
-
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 sudo: false
 install: true
-
 notifications:
   email:
     recipients:
-      - David.Dunphy@verint.com
+    - David.Dunphy@verint.com
     on_success: never
     on_failure: change
-
 branches:
   only:
-    - master
-
+  - master
 before_install:
-  - chmod +x gradlew
-
+- chmod +x gradlew
 script:
-  - ./gradlew sonarqube
-
+- "./gradlew sonarqube"
 addons:
   sonarqube:
-    organization: "rddunphy-github"
+    organization: rddunphy-github
     token:
-      secure: "zqWk77Zw2PLbyyfc3BgPvZTdAeCSv3N1HwqPY404BK655AJMAlpEADQ28VclQcQfvbnSwlsa/Xx8/wPlo6UN6xDOHAmhsbVoKP66cHZWB2nJIs/tDB05aA3ty49pRLeSXtWJ3NpHR1XIInnZfvFqmgL25I1LP0WmCsfDV1vThLDNUflX2VDpeWJc9AwWwf3FmKiRe07AOOGd+YypoL60mIOeBVoNY9USQKPaBNj39T+BNj+8Im9SlaGe/F2oe+ThXWnT6NF/tbQezaQn2Pncz/9FGTM3VPRJ4Fh8YAQkJCwavRf0AlR5YkPNtKWcv4pX6B9+8UTt9Xla24r+MT0dLCZqDK3PeXxRGGYi7teBVZK1jTGQqcYx0Akf+wq6y+JwCYpKq6L6XA8ecYp0EycjOHD640bsk21JvZgyEh24aTwsSnRkXhmOW3e+8BYFXsb50uq9RZSQf3fKGyeRhtiFvmjeOEyLeKnul7I4NmiFHf91QrW5bx9XYgKIQzYFrmeg6RW2DdtbcsnxzUajdpqtuOFmqmeQP+Y/AgQ8ytuMQLCRJqYkZH9hSOvDvrFdOmEiaFrdRZb+3q+ynTX409w/S8fuXhGagWRZVeIK5+7T//VsQKWpM1fJKbmzNLrGOQRUpFpTxmoOiF4ebT8Z/XqilOlL+IFRqIyEk9CNmhd90kU="
+      secure: sfw8NTLngeggRLGK/NR0wuTB+DwEgGdO7WVYpypr2M3tyQ6aC/6RMGOY6pcHEy2C0dJYevY1jRFlGmbXtqpY2NB5Lp/9RXV2IDfa/20PVywPJZu0YKXyHF52rFk09NvVJI1Fhtjp1aMn+Tkag8kYp4O3r1MOqHsvtiGJ16Pds1WeAFv1maYtWO5jKd1MLScS5aFj87cnDtL2utgT33/3VM4goXQF3msaXMrNb3KUrFRBuKq0OFvkYtrAuyir0cyuDv2+r3JDV8VDa40BI3ZYDLzXcrPb39HbXuiNpFMMifUpAkMyRUf9A3rMRbxUDvIzmL3GoEsdFvsmg4L9tgcVhdLxBi/cwae89mr/oUFTcRK8Kf3YieRTzgeqAdKf97E4YSuIpE9gjN0Ph4jPkPUCNxcA5Ty28FxO72t+lfMHq7qYmJ71TXgOCIZvj/zp3+vZwrnoT9H/G28WBSO7GU3y3qglEPU8kvalHj9UF1gcb3a/33XKmmIKLa2TTYLYiBAu4oAiewDhmmENWqoY7haw0F83hcyFSuAjsygNJQ7pE4ZUAeoHnoKyS4kGcjLu9ZFhxJJgzgOX061utuh58ClNHg/oW9vTyBREdeH8Hr/4OD6Mhb6TEvT8QNIvjvi1R4ugLvlAMAyUbh4t81fMWg8jsBIR66XXhth1tDH7+H6MMeU=
 
 cache:
   directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
-    - '$HOME/.gradle'
-    - '.gradle'
+  - "$HOME/.m2/repository"
+  - "$HOME/.sonar/cache"
+  - "$HOME/.gradle"
+  - ".gradle"
+  
