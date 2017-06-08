@@ -50,18 +50,4 @@ public class RomanNumeralConverter {
         return 0;
     }
 
-    public static void reset() {
-        arabicToRoman = new LinkedHashMap<>();
-        arabicToRoman.put(1000, "M");
-        arabicToRoman.put(500, "D");
-        arabicToRoman.put(100, "C");
-        arabicToRoman.put(50, "L");
-        arabicToRoman.put(10, "X");
-        arabicToRoman.put(5, "V");
-        arabicToRoman.put(1, "I");
-
-        subtractables = new HashSet<>();
-        subtractables.addAll(Arrays.asList(1, 10, 100));
-    }
-
 }
