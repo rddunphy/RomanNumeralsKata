@@ -1,4 +1,4 @@
-<%@ page import="com.verint.romannumerals.RomanNumeralConverter"
+<%@ page import="com.verint.romannumerals.RomanNumeralConverter, com.verint.romannumerals.ArabicNumberOutOfBoundsException"
     language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,14 +16,14 @@
     </form>
     <%
         try {
-            String arabicString = request.getParameter("arabic");
+            String arabicString = request.getParameter("arabic").trim();
             if (arabicString != null && arabicString.length() > 0) {
                 int arabic = Integer.parseInt(arabicString);
                 out.println(
                         arabicString + " as a Roman numeral is: " + RomanNumeralConverter.convertToRoman(arabic));
             }
-        } catch (NumberFormatException e) {
-            out.println("<font color=\"red\">Please enter a number.</font>");
+        } catch (NumberFormatException | ArabicNumberOutOfBoundsException e) {
+            out.println("<font color=\"red\">Please enter a number between 1 and 3888.</font>");
         }
     %>
 </body>

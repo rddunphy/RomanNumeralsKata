@@ -26,6 +26,12 @@ public class RomanNumeralConverter {
     }
 
     public static String convertToRoman(int arabic) {
+        if (arabic <= 0) {
+            throw new ArabicNumberOutOfBoundsException("Input is negative or zero.");
+        }
+        if (arabic > 3888) {
+            throw new ArabicNumberOutOfBoundsException("Input is greater than 3888.");
+        }
         for (Integer subtractable : subtractables) {
             if (arabicToRoman.containsKey(arabic + subtractable)) {
                 return arabicToRoman.get(subtractable) + arabicToRoman.get(arabic + subtractable);

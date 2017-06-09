@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
+import com.verint.romannumerals.ArabicNumberOutOfBoundsException;
 import com.verint.romannumerals.RomanNumeralConverter;
 
 public class RomanNumeralTest {
@@ -112,5 +113,25 @@ public class RomanNumeralTest {
     @Test
     public void shouldConvertArabicNineHundredToSubtractionOfNumerals() {
         assertThat(RomanNumeralConverter.convertToRoman(900), is("CM"));
+    }
+
+    @Test
+    public void shouldConvert3888ToRomanNumerals() {
+        assertThat(RomanNumeralConverter.convertToRoman(3888), is("MMMDCCCLXXXVIII"));
+    }
+
+    @Test(expected = ArabicNumberOutOfBoundsException.class)
+    public void shouldThrowExceptionForNegativeInput() {
+        RomanNumeralConverter.convertToRoman(-10);
+    }
+
+    @Test(expected = ArabicNumberOutOfBoundsException.class)
+    public void shouldThrowExceptionForZeroInput() {
+        RomanNumeralConverter.convertToRoman(0);
+    }
+
+    @Test(expected = ArabicNumberOutOfBoundsException.class)
+    public void shouldThrowExceptionFor3889Input() {
+        RomanNumeralConverter.convertToRoman(3889);
     }
 }
