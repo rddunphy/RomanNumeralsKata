@@ -6,6 +6,8 @@ plugins {
     id "info.solidsoft.pitest" version "1.1.11"
 }
 
+group 'com.verint'
+
 repositories {
     jcenter()
 }
@@ -18,11 +20,6 @@ sonarqube {
     properties {
         property "sonar.jacoco.reportPath", "jacoco/test.exec"
     }
-}
-
-pitest {
-    targetClasses = ['com.verint.romannumerals.*']
-    targetTests = ['com.verint.romannumeralstest.*']
 }
 
 build.dependsOn "pitest"
