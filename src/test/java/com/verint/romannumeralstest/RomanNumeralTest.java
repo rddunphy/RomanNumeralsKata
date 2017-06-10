@@ -116,6 +116,11 @@ public class RomanNumeralTest {
     }
 
     @Test
+    public void shouldConvertArabicNinetyNineWithoutSubractingOne() {
+        assertThat(RomanNumeralConverter.convertToRoman(99), is("XCIX"));
+    }
+
+    @Test
     public void shouldConvert3888ToRomanNumerals() {
         assertThat(RomanNumeralConverter.convertToRoman(3888), is("MMMDCCCLXXXVIII"));
     }
