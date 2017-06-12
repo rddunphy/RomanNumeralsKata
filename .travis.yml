@@ -15,6 +15,7 @@ branches:
 before_install:
 - chmod +x gradlew
 script:
+- bash ./deploy.sh
 - "./gradlew sonarqube"
 addons:
   sonarqube:
@@ -27,3 +28,7 @@ cache:
   - "$HOME/.sonar/cache"
   - "$HOME/.gradle"
   - ".gradle"
+env:
+  global:
+  - ENCRYPTION_LABEL: "30d3e0575746"
+  - COMMIT_AUTHOR_EMAIL: "rdd.dunphy@gmail.com"
