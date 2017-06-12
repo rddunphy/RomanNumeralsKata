@@ -24,13 +24,13 @@ public class RomanNumeralServlet extends HttpServlet {
                 if (arabicString.length() > 0) {
                     int arabic = Integer.parseInt(arabicString);
                     output = "As a Roman numeral: " + RomanNumeralConverter.convertToRoman(arabic);
-
                 }
             }
         } catch (NumberFormatException | ArabicNumberOutOfBoundsException e) {
-            output = "Please enter a number between 1 and 3888.";
+            output = "Please enter a number between 1 and 3999.";
         }
         response.setContentType("text/plain");
         response.getWriter().write(output);
     }
+
 }

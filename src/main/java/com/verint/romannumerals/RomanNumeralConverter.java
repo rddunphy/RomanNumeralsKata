@@ -29,8 +29,23 @@ public class RomanNumeralConverter {
         if (arabic <= 0) {
             throw new ArabicNumberOutOfBoundsException("Input is negative or zero.");
         }
-        if (arabic > 3888) {
-            throw new ArabicNumberOutOfBoundsException("Input is greater than 3888.");
+        if (arabic > 3999) {
+            throw new ArabicNumberOutOfBoundsException("Input is greater than 3999.");
+        }
+
+        int thousands = arabic / 1000;
+        arabic %= 1000;
+        int hundreds = arabic / 100;
+        arabic %= 100;
+        int tens = arabic / 10;
+        arabic %= 10;
+        return convertModularisedToRoman(thousands * 1000) + convertModularisedToRoman(hundreds * 100)
+                + convertModularisedToRoman(tens * 10) + convertModularisedToRoman(arabic);
+    }
+
+    private static String convertModularisedToRoman(int arabic) {
+        if (arabic == 0) {
+            return "";
         }
         for (Integer subtractable : subtractables) {
             if (arabicToRoman.containsKey(arabic + subtractable)) {
@@ -42,7 +57,7 @@ public class RomanNumeralConverter {
         String roman = arabicToRoman.get(largestSingleNumeralArabicValue);
         int remainder = arabic - largestSingleNumeralArabicValue;
         if (remainder != 0) {
-            roman += convertToRoman(remainder);
+            roman += convertModularisedToRoman(remainder);
         }
         return roman;
     }

@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	$('#arabicInput').keyup(function() {
 		var input = $('#arabicInput').val();
-	//	$('#romanOutput').text(input);/*
 		$.ajax({
 			url : 'RomanNumeralServlet',
 			data : {

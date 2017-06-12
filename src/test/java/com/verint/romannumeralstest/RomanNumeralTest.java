@@ -125,6 +125,11 @@ public class RomanNumeralTest {
         assertThat(RomanNumeralConverter.convertToRoman(3888), is("MMMDCCCLXXXVIII"));
     }
 
+    @Test
+    public void shouldConvert3999ToRomanNumerals() {
+        assertThat(RomanNumeralConverter.convertToRoman(3999), is("MMMCMXCIX"));
+    }
+
     @Test(expected = ArabicNumberOutOfBoundsException.class)
     public void shouldThrowExceptionForNegativeInput() {
         RomanNumeralConverter.convertToRoman(-10);
@@ -136,7 +141,7 @@ public class RomanNumeralTest {
     }
 
     @Test(expected = ArabicNumberOutOfBoundsException.class)
-    public void shouldThrowExceptionFor3889Input() {
-        RomanNumeralConverter.convertToRoman(3889);
+    public void shouldThrowExceptionFor4000Input() {
+        RomanNumeralConverter.convertToRoman(4000);
     }
 }
