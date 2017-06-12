@@ -25,6 +25,10 @@ public class RomanNumeralConverter {
         subtractables.addAll(Arrays.asList(1, 10, 100));
     }
 
+    private RomanNumeralConverter() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static String convertToRoman(int arabic) {
         if (arabic <= 0) {
             throw new ArabicNumberOutOfBoundsException("Input is negative or zero.");
@@ -32,15 +36,12 @@ public class RomanNumeralConverter {
         if (arabic > 3999) {
             throw new ArabicNumberOutOfBoundsException("Input is greater than 3999.");
         }
-
         int thousands = arabic / 1000;
-        arabic %= 1000;
-        int hundreds = arabic / 100;
-        arabic %= 100;
-        int tens = arabic / 10;
-        arabic %= 10;
+        int hundreds = (arabic % 1000) / 100;
+        int tens = (arabic % 100) / 10;
+        int ones = arabic % 10;
         return convertModularisedToRoman(thousands * 1000) + convertModularisedToRoman(hundreds * 100)
-                + convertModularisedToRoman(tens * 10) + convertModularisedToRoman(arabic);
+                + convertModularisedToRoman(tens * 10) + convertModularisedToRoman(ones);
     }
 
     private static String convertModularisedToRoman(int arabic) {

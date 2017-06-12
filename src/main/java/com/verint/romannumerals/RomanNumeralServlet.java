@@ -16,21 +16,25 @@ public class RomanNumeralServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String output = "";
         try {
-            String arabicString = request.getParameter("arabic");
-            if (arabicString != null) {
-                arabicString = arabicString.trim();
-                if (arabicString.length() > 0) {
-                    int arabic = Integer.parseInt(arabicString);
-                    output = "As a Roman numeral: " + RomanNumeralConverter.convertToRoman(arabic);
+            String output = "";
+            try {
+                String arabicString = request.getParameter("arabic");
+                if (arabicString != null) {
+                    arabicString = arabicString.trim();
+                    if (arabicString.length() > 0) {
+                        int arabic = Integer.parseInt(arabicString);
+                        output = "As a Roman numeral: " + RomanNumeralConverter.convertToRoman(arabic);
+                    }
                 }
+            } catch (NumberFormatException | ArabicNumberOutOfBoundsException e) {
+                output = "Please enter a number between 1 and 3999.";
             }
-        } catch (NumberFormatException | ArabicNumberOutOfBoundsException e) {
-            output = "Please enter a number between 1 and 3999.";
+            response.setContentType("text/plain");
+            response.getWriter().write(output);
+        } catch (IOException e) {
+
         }
-        response.setContentType("text/plain");
-        response.getWriter().write(output);
     }
 
 }
