@@ -9,6 +9,7 @@ buildscript {
 
 plugins {
     id 'java'
+    id 'war'
     id 'eclipse'
     id "org.sonarqube" version "2.5"
     id 'jacoco'
@@ -22,6 +23,7 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12'
+    providedCompile 'org.apache.tomcat:tomcat-catalina:9.0.0.M21'
 }
 
 sonarqube {
