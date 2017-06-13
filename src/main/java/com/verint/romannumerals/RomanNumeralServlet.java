@@ -19,25 +19,31 @@ public class RomanNumeralServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String output = "";
-        try {
-            String arabicString = request.getParameter("arabic");
-            if (arabicString != null) {
-                arabicString = arabicString.trim();
-                if (arabicString.length() > 0) {
+        String arabicString = request.getParameter("arabic");
+        String message = "null";
+        if (arabicString != null) {
+            arabicString = arabicString.trim();
+            if (arabicString.length() > 0) {
+                try {
                     int arabic = Integer.parseInt(arabicString);
-                    output = "As a Roman numeral: " + RomanNumeralConverter.convertToRoman(arabic);
+                    message = RomanNumeralConverter.convertToRoman(arabic);
+                } catch (NumberFormatException | ArabicNumberOutOfBoundsException e) {
+                    LOGGER.log(Level.FINE, e.toString(), e);
+                    message = "NaN";
                 }
             }
-        } catch (NumberFormatException | ArabicNumberOutOfBoundsException e) {
-            LOGGER.log(Level.FINE, e.toString(), e);
-            output = "Please enter a number between 1 and 3999.";
         }
-        response.setContentType("text/plain");
+        sendResponse(response, message);
+    }
+
+    private void sendResponse(HttpServletResponse response, String message) {
         try {
-            response.getWriter().write(output);
+            response.setContentType("text/plain");
+            response.getWriter().write(message);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
+
 }
