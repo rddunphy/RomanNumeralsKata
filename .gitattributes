@@ -17,15 +17,13 @@
 *.md text
 *.mf text
 *.properties text
+*.sh text
 *.tld text
 *.txt text
 *.tag text
 *.tagx text
 *.xml text
 *.yml text
-
-# Shell script needs to be LF to run on Tomcat:
-*.sh eol=lf
 
 # Binary files - no CRLF conversion:
 *.class binary
