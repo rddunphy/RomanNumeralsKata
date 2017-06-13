@@ -5,7 +5,7 @@ SOURCE_BRANCH="master"
 TARGET_BRANCH="gh-pages"
 
 function doCompile {
-  ./compile.sh
+    echo "<!doctype html><html><head><title>Test reports</title></head><body>Hello, World!</body></html>" > index.html
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
