@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	color: #011418;
+	background-color: #428a8a;
+}
+
+#wrapper {
+	height: 250px;
+	width: 600px;
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	margin-left: -300px;
+	padding: 0;
+	background-color: #e6ffff;
+	border-radius: 15px;
+}
+
+#content {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+}
+
+.error {
+	color: red;
+	font-style: italic;
+}
+
+.output {
+	width: 300px;
+	height: 22px;
+	padding: 5px;
+	outline: #011418 solid thin;
+	background-color: #eaeaea;
+}

@@ -1,25 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
 plugins {
     id 'java'
-    id 'war'
     id 'eclipse'
+    id 'idea'
     id 'org.sonarqube' version '2.5'
     id 'jacoco'
     id 'info.solidsoft.pitest' version '1.1.11'
 }
 
+apply plugin: 'org.springframework.boot'
+
 group 'com.verint'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-    providedCompile 'org.apache.tomcat:tomcat-catalina:9.0.0.M21'
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-devtools")
+    testCompile("junit:junit")
 }
 
 sonarqube {
     properties {
         property 'sonar.jacoco.reportPath', 'jacoco/test.exec'
     }
+}
+
+jar {
+    baseName = 'gs-rest-service'
+    version = '0.1.0'
 }

@@ -29,12 +29,12 @@ public class RomanNumeralConverter {
         throw new IllegalStateException("Utility class");
     }
 
-    public static String convertToRoman(int arabic) {
+    public static String convertToRoman(int arabic) throws InvalidArabicInputException {
         if (arabic <= 0) {
-            throw new ArabicNumberOutOfBoundsException("Input is negative or zero.");
+            throw new InvalidArabicInputException("Input should be greater than zero.");
         }
         if (arabic > 3999) {
-            throw new ArabicNumberOutOfBoundsException("Input is greater than 3999.");
+            throw new InvalidArabicInputException("Input should be less than 4000.");
         }
         int thousands = arabic / 1000;
         int hundreds = (arabic % 1000) / 100;
