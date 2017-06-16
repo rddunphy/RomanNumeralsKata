@@ -8,10 +8,10 @@ import java.util.Set;
 
 public class RomanNumeralConverter {
 
-    private static Map<Integer, String> arabicToRoman;
-    private static Set<Integer> subtractables;
+    private Map<Integer, String> arabicToRoman;
+    private Set<Integer> subtractables;
 
-    static {
+    public RomanNumeralConverter() {
         arabicToRoman = new LinkedHashMap<>();
         arabicToRoman.put(1000, "M");
         arabicToRoman.put(500, "D");
@@ -25,11 +25,7 @@ public class RomanNumeralConverter {
         subtractables.addAll(Arrays.asList(1, 10, 100));
     }
 
-    private RomanNumeralConverter() {
-        throw new IllegalStateException("Utility class");
-    }
-
-    public static String convertToRoman(int arabic) throws InvalidArabicInputException {
+    public String convertToRoman(int arabic) throws InvalidArabicInputException {
         if (arabic <= 0) {
             throw new InvalidArabicInputException("Input should be greater than zero.");
         }
@@ -44,7 +40,7 @@ public class RomanNumeralConverter {
                 + convertModularisedToRoman(tens * 10) + convertModularisedToRoman(ones);
     }
 
-    private static String convertModularisedToRoman(int arabic) {
+    private String convertModularisedToRoman(int arabic) {
         if (arabic == 0) {
             return "";
         }
@@ -63,7 +59,7 @@ public class RomanNumeralConverter {
         return roman;
     }
 
-    private static int getLargestSingleNumeralArabicValue(int arabic) {
+    private int getLargestSingleNumeralArabicValue(int arabic) {
         for (int arabicKey : arabicToRoman.keySet()) {
             if (arabicKey <= arabic) {
                 return arabicKey;

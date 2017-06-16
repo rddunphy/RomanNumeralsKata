@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RomanController {
 
+    private RomanNumeralConverter converter;
+
+    public RomanController(RomanNumeralConverter converter) {
+        this.converter = converter;
+    }
+
     @RequestMapping(value = "/roman", method = RequestMethod.GET)
     public RomanNumeral roman(@RequestParam(value = "arabic", required = true) String input)
             throws InvalidArabicInputException {
@@ -16,7 +22,7 @@ public class RomanController {
             if (trimmedInput.length() > 0) {
                 try {
                     int arabic = Integer.parseInt(trimmedInput);
-                    String roman = RomanNumeralConverter.convertToRoman(arabic);
+                    String roman = converter.convertToRoman(arabic);
                     return new RomanNumeral(arabic, roman);
                 } catch (NumberFormatException e) {
                     throw new InvalidArabicInputException("Input should be an integer.");

@@ -2,6 +2,9 @@ package com.verint.romannumeralstest;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,14 +12,18 @@ import org.junit.Test;
 import com.verint.romannumerals.InvalidArabicInputException;
 import com.verint.romannumerals.RomanController;
 import com.verint.romannumerals.RomanNumeral;
+import com.verint.romannumerals.RomanNumeralConverter;
 
 public class RomanControllerTest {
 
     RomanController ctrl;
+    RomanNumeralConverter mockedConverter;
 
     @Before
-    public void initialise() {
-        ctrl = new RomanController();
+    public void initialise() throws InvalidArabicInputException {
+        mockedConverter = mock(RomanNumeralConverter.class);
+        when(mockedConverter.convertToRoman(anyInt())).thenReturn("X");
+        ctrl = new RomanController(mockedConverter);
     }
 
     @Test(expected = InvalidArabicInputException.class)
@@ -39,27 +46,17 @@ public class RomanControllerTest {
         ctrl.roman("hello");
     }
 
-    @Test(expected = InvalidArabicInputException.class)
-    public void negativeParameterShouldCauseException() throws InvalidArabicInputException {
-        ctrl.roman("-5");
-    }
-
-    @Test(expected = InvalidArabicInputException.class)
-    public void positiveOutOfRangeParameterShouldCauseException() throws InvalidArabicInputException {
-        ctrl.roman("10000");
-    }
-
     @Test
     public void integerInputShouldReturnRomanNumeral() throws InvalidArabicInputException {
         RomanNumeral numeral = ctrl.roman("30");
         assertThat(numeral.getArabic(), is(30));
-        assertThat(numeral.getRoman(), is("XXX"));
+        assertThat(numeral.getRoman(), is("X"));
     }
 
     @Test
     public void integerAndWhitespaceInputShouldReturnRomanNumeral() throws InvalidArabicInputException {
         RomanNumeral numeral = ctrl.roman("\t7    ");
         assertThat(numeral.getArabic(), is(7));
-        assertThat(numeral.getRoman(), is("VII"));
+        assertThat(numeral.getRoman(), is("X"));
     }
 }
