@@ -6,6 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class RomanNumeralConverter {
 
     private Map<Integer, String> arabicToRoman;
